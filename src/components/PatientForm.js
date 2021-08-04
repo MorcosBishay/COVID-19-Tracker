@@ -91,6 +91,7 @@ const PatientForm = () => {
           <p className="err">{errors.phone_number?.message}</p>
           <label>Nationality *</label>
           <Select
+            requierd
             options={nationalityOptions}
             value={nationality}
             onChange={changeNationalityHandler}

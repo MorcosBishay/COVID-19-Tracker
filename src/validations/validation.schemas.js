@@ -26,6 +26,7 @@ const patientSchema = yup.object().shape({
     .string()
     .required("Phone Number is required")
     .matches(phoneRegex, "Phone number is not valid"),
+  nationality: yup.string().required("Nationality is required"),
   weight: yup
     .string()
     .required("Weight is required")
