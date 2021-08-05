@@ -10,9 +10,14 @@ export const addPatient = async (body) => {
   return API.post(`${route}/add`, body);
 };
 
+export const getCounts = async () => {
+  return API.get(`${route}/counts`);
+};
+
 const patientService = {
   getAllPatients,
   addPatient,
+  getCounts,
 };
 
 export default patientService;

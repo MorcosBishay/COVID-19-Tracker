@@ -1,9 +1,70 @@
 const router = require("express").Router();
 let Patient = require("../models/patient.model");
+const _ = require("lodash");
 
 router.route("/").get((req, res) => {
   Patient.find()
     .then((patients) => res.json(patients))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/counts").get((req, res) => {
+  Patient.find()
+    .then(async (patients) => {
+      let allCountries = [];
+      let Table = [];
+      let TableList = [];
+      let data = [];
+      patients.map((patient) => {
+        allCountries.push(patient.country_code_iso3);
+        Table.push(patient.location);
+      });
+
+      let a = [],
+        b = [],
+        arr = [...allCountries],
+        prev,
+        aTable = [],
+        bTable = [],
+        arrTable = [...Table],
+        prevTable;
+
+      await arr.sort();
+      for (let element of arr) {
+        if (element !== prev) {
+          a.push(element);
+          b.push(1);
+        } else ++b[b.length - 1];
+        prev = element;
+      }
+
+      await arrTable.sort();
+      for (let elementT of arrTable) {
+        if (elementT !== prevTable) {
+          aTable.push(elementT);
+          bTable.push(1);
+        } else ++bTable[bTable.length - 1];
+        prevTable = elementT;
+      }
+
+      const minValue = Math.min(...b) - 1;
+      const maxValue = Math.max(...b);
+
+      for (let i = 0; i < a.length; i++) {
+        TableList.push({ country: aTable[i], count: bTable[i] });
+        data.push({ id: a[i], val: b[i] });
+      }
+
+      TableList = _.orderBy(TableList, "count", "desc");
+
+      res.json({
+        TableList: TableList,
+        data: data,
+        minValue: minValue,
+        maxValue: maxValue,
+        patients: patients,
+      });
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
