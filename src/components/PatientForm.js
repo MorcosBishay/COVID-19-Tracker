@@ -20,10 +20,33 @@ const PatientForm = () => {
   const [latitude, setLatitude] = useState("");
   const [country_code_iso3, setISO3] = useState("");
   const [nationality, setNationality] = useState("");
+  const [gender, setGender] = useState("");
+  var [genderError, setGenderError] = useState(false);
+  var [nationalityError, setNationalityError] = useState(false);
   const nationalityOptions = useMemo(() => countryList().getData(), []);
+  const genderOptions = [
+    { value: "male", label: "Male" },
+    { value: "female", label: "Female" },
+    { value: "other", label: "Other" },
+  ];
+
+  const handelSubmit = () => {
+    if (gender === "") {
+      setGenderError(true);
+    }
+    if (nationality === "") {
+      setNationalityError(true);
+    }
+  };
 
   const changeNationalityHandler = (value) => {
     setNationality(value);
+    setNationalityError(false);
+  };
+
+  const changeGenderHandler = (value) => {
+    setGender(value);
+    setGenderError(false);
   };
 
   useEffect(() => {
@@ -53,7 +76,7 @@ const PatientForm = () => {
       nationality: nationality.label,
       weight: data.weight,
       location,
-      gender: data.gender,
+      gender: gender.label,
       longitude,
       latitude,
       country_code_iso3,
@@ -67,13 +90,14 @@ const PatientForm = () => {
       });
     e.target.reset();
     setNationality("");
+    setGender("");
   };
 
   return (
     <div className="container">
-      <h3>Add New Patient</h3>
+      <h3 style={{ width: "60%", margin: "0 auto" }}>Add New Patient</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
+        <div className="form-group" style={{ width: "60%", margin: "0 auto" }}>
           <label>Name *</label>
           <input type="text" className="form-control" {...register("name")} />
           <p className="err">{errors.name?.message}</p>
@@ -89,37 +113,35 @@ const PatientForm = () => {
           <label>Phone Number *</label>
           <input className="form-control" {...register("phone_number")} />
           <p className="err">{errors.phone_number?.message}</p>
-          <label>Nationality *</label>
-          <Select
-            requierd
-            options={nationalityOptions}
-            value={nationality}
-            onChange={changeNationalityHandler}
-            className="form-control"
-          />
-          <p className="err">{errors.nationality?.message}</p>
           <label>Weight (kg) *</label>
           <input className="form-control" {...register("weight")} />
           <p className="err">{errors.weight?.message}</p>
+          <label>Nationality *</label>
+          <Select
+            options={nationalityOptions}
+            value={nationality}
+            onChange={changeNationalityHandler}
+          />
+          {nationalityError ? (
+            <p className="err">Nationality is required</p>
+          ) : (
+            <br />
+          )}
           <label>Gender *</label>
-          <select
-            defaultValue=""
-            className="form-control"
-            {...register("gender")}
-          >
-            <option value="" disabled></option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-          <p className="err">{errors.gender?.message}</p>
+          <Select
+            options={genderOptions}
+            value={gender}
+            onChange={changeGenderHandler}
+          />
+          {genderError && <p className="err">Gender is required</p>}
           <br />
         </div>
-        <div className="form-group">
+        <div style={{ width: "60%", margin: "0 auto" }} className="form-group">
           <input
             type="submit"
             value="Add Patient"
             className="btn btn-primary"
+            onClick={handelSubmit}
           />
         </div>
       </form>

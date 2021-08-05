@@ -21,10 +21,6 @@ const mapStyles = {
   height: "auto",
 };
 
-const s = {
-  width: "100%",
-};
-
 var markers = [];
 var allPatients = [];
 var data = [];
@@ -42,7 +38,6 @@ class Map extends Component {
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.handleMouseMoveMarker = this.handleMouseMoveMarker.bind(this);
-    this.handleMouseLeaveMarker = this.handleMouseLeaveMarker.bind(this);
     this.prevIndex = this.prevIndex.bind(this);
     this.nextIndex = this.nextIndex.bind(this);
     this.state = {
@@ -131,6 +126,7 @@ class Map extends Component {
     `);
     this.tip.position({ pageX: evt.pageX, pageY: evt.pageY });
   }
+
   handleMouseLeave() {
     this.tip.hide();
   }
@@ -197,9 +193,7 @@ class Map extends Component {
     `);
     this.tip.position({ pageX: evt.pageX, pageY: evt.pageY });
   }
-  handleMouseLeaveMarker() {
-    this.tip.hide();
-  }
+
   nextIndex = () => {
     if (this.state.zoom > 0.5) {
       return this.setState({
@@ -221,10 +215,10 @@ class Map extends Component {
       return <Loading />;
     }
     return (
-      <div className="float-container" style={s}>
+      <div className="float-container" style={{ width: "100%" }}>
         <div class="float-child">
           <div className="controls">
-            <button id="z" onClick={this.prevIndex}>
+            <button onClick={this.prevIndex}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -313,7 +307,7 @@ class Map extends Component {
                 {markers.map((marker) => (
                   <Marker
                     onMouseMove={this.handleMouseMoveMarker}
-                    onMouseLeave={this.handleMouseLeaveMarker}
+                    onMouseLeave={this.handleMouseLeave}
                     marker={marker}
                     style={{
                       hidden: { display: "none" },

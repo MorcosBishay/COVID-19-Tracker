@@ -69,7 +69,6 @@ svg {
 }
 
 .float-container {
-  /* border: 3px solid #fff; */
   padding: 20px;
 }
 
@@ -77,14 +76,12 @@ svg {
   width: 70%;
   float: left;
   padding: 20px;
-  /* border: 2px solid red; */
 }
 
 .float-child-list {
   width: 30%;
   float: left;
   padding: 20px;
-  /* border: 2px solid red; */
 }
 
 #title {
