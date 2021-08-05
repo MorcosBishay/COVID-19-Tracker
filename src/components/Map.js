@@ -217,7 +217,7 @@ class Map extends Component {
     return (
       <div className="float-container" style={{ width: "100%" }}>
         <div class="float-child">
-          <div className="controls">
+          <div className="controls" style={{ top: "15%" }}>
             <button onClick={this.prevIndex}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

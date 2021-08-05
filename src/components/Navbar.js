@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+    <nav
+      className="navbar navbar-dark bg-dark navbar-expand-lg"
+      style={{ padding: "30px 50px" }}
+    >
       <Link to="/" className="navbar-brand">
         COVID19 Tracker
       </Link>

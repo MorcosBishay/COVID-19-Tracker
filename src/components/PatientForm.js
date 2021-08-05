@@ -94,8 +94,26 @@ const PatientForm = () => {
   };
 
   return (
-    <div className="container">
-      <h3 style={{ width: "60%", margin: "0 auto" }}>Add New Patient</h3>
+    <div
+      className="container"
+      style={{
+        backgroundColor: "cadetblue",
+        borderRadius: "15px",
+        padding: "3px",
+      }}
+    >
+      <h3
+        style={{
+          width: "60%",
+          margin: "30px auto",
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "50px",
+          fontWeight: "bold",
+        }}
+      >
+        Add New Patient
+      </h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group" style={{ width: "60%", margin: "0 auto" }}>
           <label>Name *</label>
@@ -136,7 +154,15 @@ const PatientForm = () => {
           {genderError && <p className="err">Gender is required</p>}
           <br />
         </div>
-        <div style={{ width: "60%", margin: "0 auto" }} className="form-group">
+        <div
+          style={{
+            justifyContent: "center",
+            display: "flex",
+            width: "60%",
+            margin: "0 auto",
+          }}
+          className="form-group"
+        >
           <input
             type="submit"
             value="Add Patient"
