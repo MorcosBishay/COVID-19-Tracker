@@ -100,6 +100,7 @@ const PatientForm = () => {
         backgroundColor: "cadetblue",
         borderRadius: "15px",
         padding: "3px",
+        marginTop: "20px",
       }}
     >
       <h3

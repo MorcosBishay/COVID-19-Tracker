@@ -10,8 +10,6 @@ function App() {
     <Router>
       <div>
         <Navbar width="100%" />
-        <br />
-
         <Route
           exact
           path="/"

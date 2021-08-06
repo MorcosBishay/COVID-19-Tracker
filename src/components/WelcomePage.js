@@ -1,10 +1,6 @@
-import "../styles/styles.css";
+import img from "../styles/HomePageIMG.jpg";
 const Welcome = () => {
-  return (
-    <div>
-      <p>Welcome to COVID-19 Tracker</p>
-    </div>
-  );
+  return <img style={{ width: "-moz-available" }} src={img} alt="cur" />;
 };
 
 export default Welcome;
