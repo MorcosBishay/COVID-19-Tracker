@@ -7,5 +7,5 @@ Get Counts : https://covid-tracker-backend-nodogoro.herokuapp.com/patients/count
 ## Frontend :
 Home Page : https://610cb19a29cc9138d7ba7554--covid-19-tracker-nodogoro.netlify.app/ <br/>
 Add Patient : https://610cb19a29cc9138d7ba7554--covid-19-tracker-nodogoro.netlify.app/patient <br/>
-Dashboard : https://610cb19a29cc9138d7ba7554--covid-19-tracker-nodogoro.netlify.app/
+Dashboard : https://610cb19a29cc9138d7ba7554--covid-19-tracker-nodogoro.netlify.app/map
 
